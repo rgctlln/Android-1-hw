@@ -5,7 +5,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolder(view: View) :
+    RecyclerView.ViewHolder(view) {
 
     val text = view.findViewById<TextView>(R.id.text_1)
     val image = view.findViewById<ImageView>(R.id.image_view)

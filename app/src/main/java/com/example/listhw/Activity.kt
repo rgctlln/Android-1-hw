@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.LinkedList
 
 class Activity : AppCompatActivity() {
 
     companion object {
-        const val ITEMS_CNT = "ITEMS_CNT"
+        //        const val ITEMS_CNT = "ITEMS_CNT"
+        const val QUEUE = "QUEUE"
+        const val ITEMS_LEFT = "ITEMS_LEFT"
     }
 
     lateinit var recyclerView: RecyclerView
@@ -29,14 +32,20 @@ class Activity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(ITEMS_CNT, adapter.itemCount)
+        outState.putIntegerArrayList(ITEMS_LEFT, ArrayList(adapter.getItems()))
+        outState.putIntegerArrayList(QUEUE, ArrayList(adapter.getQueue()))
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val prevStateSize: Int = savedInstanceState.getInt(ITEMS_CNT)
-        for (i in 1..prevStateSize) {
-            adapter.addItems(i)
+        val itemsList = savedInstanceState.getIntegerArrayList(ITEMS_LEFT)
+        if (itemsList != null) {
+            adapter.setItems(itemsList)
         }
+        val queueList = savedInstanceState.getIntegerArrayList(QUEUE)
+        if (queueList != null) {
+            adapter.setQueue(LinkedList(queueList))
+        }
+
     }
 }
