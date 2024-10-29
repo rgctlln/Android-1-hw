@@ -41,13 +41,13 @@ class Adapter() : RecyclerView.Adapter<ViewHolder>() {
             items.add(item)
         } else {
             val idx = queue.remove()
-            items.add(idx, idx + 1)
+            items.add(idx - 1, idx)
         }
         notifyDataSetChanged()
     }
 
     fun deleteElem(index: Int) {
-        queue.add(index)
+        queue.add(items[index])
         items.removeAt(index)
         notifyDataSetChanged()
     }
