@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.LinkedList
 import java.util.Queue
 
-class Adapter() : RecyclerView.Adapter<ViewHolder>() {
+class Adapter : RecyclerView.Adapter<ViewHolder>() {
 
     private var items = ArrayList<Int>()
 
@@ -40,8 +40,7 @@ class Adapter() : RecyclerView.Adapter<ViewHolder>() {
         if (queue.isEmpty()) {
             items.add(item)
         } else {
-            val idx = queue.remove()
-            items.add(idx - 1, idx)
+            items.add(queue.remove())
         }
         notifyDataSetChanged()
     }

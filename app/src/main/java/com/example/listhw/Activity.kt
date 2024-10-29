@@ -46,6 +46,5 @@ class Activity : AppCompatActivity() {
         if (queueList != null) {
             adapter.setQueue(LinkedList(queueList))
         }
-
     }
 }
